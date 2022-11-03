@@ -2,9 +2,21 @@ package org.springframework.samples.petclinic.recoveryroom;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
 public class RecoveryRoomService {
+	
+	private RecoveryRoomRepository repo;
+	
+	@Autowired
+	public RecoveryRoomService(RecoveryRoomRepository repo) {
+		this.repo = repo;
+	}
+	
     public List<RecoveryRoom> getAll(){
-        return null;
+        return repo.findAll();
     }
 
     public List<RecoveryRoomType> getAllRecoveryRoomTypes(){
@@ -16,7 +28,7 @@ public class RecoveryRoomService {
     }
 
     public RecoveryRoom save(RecoveryRoom p) throws DuplicatedRoomNameException {
-        return null;       
+        return repo.save(p);       
     }
 
     
